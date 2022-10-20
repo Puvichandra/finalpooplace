@@ -145,7 +145,7 @@ export default function Collection(props) {
      
     {/* <Topnav address={props.address} connect={props.connect}  walletdiscon={props.walletdiscon}  walletswitch={props.walletswitch}
      getSearchText={props.getSearchText} sethasmore={sethasmore} collect ={props.collect}/> */}
-      <h1 className={styles.container}>Collection</h1>
+      <h1 className={styles.container}>Colttlection</h1>
       <div id="scrollableDiv" style={{ height: '100vh', overflow: "auto" }} className={styles1.scroll}>
       <InfiniteScroll
             dataLength={arrlength}
