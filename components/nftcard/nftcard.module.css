@@ -114,6 +114,11 @@
         width: 1rem;
         height: 1rem;
     }
+      .buy__btn{
+        padding: 0.2rem 0.5rem;
+        font-size: 0.6rem;
+
+    }
 }
 
 @media screen and (max-width: 365px){
