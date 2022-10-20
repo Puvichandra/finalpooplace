@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import NFT from "../contracts/NFT.json";
 import NFT_test from "../contracts/NFT_test.json";
 import Sidebar from  '../components/sidebar/Sidebar'
-import Main from "../components/main/main"
+import Main from "../components/main/Main"
 // import classes from './_app'
 import {HiOutlineMenuAlt1} from 'react-icons/hi'
 import Poogenesis from '../components/poogrowgenesis/Poogenesis'
