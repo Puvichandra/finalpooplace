@@ -152,6 +152,20 @@
         width: 0.9rem;
         height: 0.9rem;
     }
+    .price__input{
+        width: 3rem;
+        height: 1rem;
+        padding-left: 0.3rem;
+    }
+    .price__input::placeholder{
+        font-size: 0.6rem;
+    }
+    .sell__btn{
+        width: 3rem;
+        height: 1rem;
+        font-size: 0.6rem;
+        
+    }
 }
 
 

@@ -25,7 +25,7 @@ const Main = (props) => {
   // const [show,setShow] =useState(false);
   const [sortval, setsortval]=useState("htol");
   const [nftdetaildata, setnftdetaildata]=useState({});
- //console.log(props)
+ console.log(props)
 
 
  useEffect(()=>{
@@ -51,23 +51,38 @@ const getAllToken= async ()=>{
   const items = await Promise.all(data.map(async i =>{
   const tokenContract = new ethers.Contract(i.nftContract,poomin, props.ssigner)
   const tokenUri = await tokenContract.tokenURI(i.tokenId)
-  //console.log("Ks",tokenUri)
-  const meta = await axios.get(tokenUri)
-  let price = ethers.utils.formatUnits(i.price.toString(),'ether')
-  let item = {
-    price,
-    itemId:i.itemId,
-    tokenId:i.tokenId.toNumber(),
-    seller:i.seller,
-    owner:i.holder,
-    nftContract:i.nftContract,
-    image:meta.data.image,
-    name:meta.data.name,
-    description:meta.data.description
+  console.log("Ks",tokenUri)
+ let item;
 
+  try {
+    let meta;
+    await fetch("api/geturi", {
+      method:'POST',
+      body:JSON.stringify({tokenuri:tokenUri}),
+      headers:{
+         'Content-Type': 'application/json'
+       }
+      }).then((res)=>res.json()).then((data)=>meta=data.item);
+     console.log("meta",meta)
+   // const meta = await axios.get(tokenUri,config)
+     let price = ethers.utils.formatUnits(i.price.toString(),'ether')
+     item = {
+      price,
+      itemId:i.itemId,
+      tokenId:i.tokenId.toNumber(),
+      seller:i.seller,
+      owner:i.holder,
+      nftContract:i.nftContract,
+      image:meta.image,
+      name:meta.name,
+      description:meta.description
+    }
+    return item;
+  } catch(e) {
+    console.log(e)
+  } finally {
+    console.log("go ahead")
   }
- 
-  return item
 }))
 
 //sortfunc(items)

@@ -15,10 +15,13 @@ const nftcard = (props) => {
         </div>
       
         <div className={classes.nft__price}>
+          
+
           <img src='img/bsc.png' alt="bnb" />
           <h4>{props.price} BNB</h4>
+          
 
-          <buttton onClick={()=>props.buy(props.nft)} className={classes.buy__btn}>Buy</buttton>
+          <buttton className={classes.buy__btn}>Buy</buttton>
         </div>
           
       </div>

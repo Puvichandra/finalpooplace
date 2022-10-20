@@ -33,6 +33,7 @@
     gap: 0.5rem;
     cursor: pointer;
     
+    
 }
 .nft__price img{
     width: 1.5rem;
@@ -43,6 +44,7 @@
     padding: 0.2rem 1rem;
     border-radius: 2rem;
     transition: var(--transition);
+    /* margin-left: 20%; */
 }
 .buy__btn:hover{
     background: var(--color-gradient-2);

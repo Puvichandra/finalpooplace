@@ -84,11 +84,10 @@ export default async function handler(req, res) {
         const address = req.body.address;
        // console.log("add",address)
         //const chain= "5777";
-        // const chain= "bsc testnet";
-        const chain= 'bsc';
+       // const chain= "bsc testnet";
+       // const chain= 'bsc';
         let nftsData=[];
 
-        //  await axios.get(`https://deep-index.moralis.io/api/v2/${address}/nft?chain=bsc%20testnet&format=decimal`,
          await axios.get(`https://deep-index.moralis.io/api/v2/${address}/nft?chain=bsc&format=decimal`,
          {
             headers:{
@@ -96,7 +95,7 @@ export default async function handler(req, res) {
                 "X-API-Key":"dOmygySd2aaSVl4CzyQNluv62slJ8aKH2FXRREuWfwOzpataFhisQSbrfJjOfEwU",
             },
          }).then (async (res)=>{
-         // console.log("kku",res.data.result)
+          //console.log("kku",res.data.result)
             for(let i=0;i<res.data.result.length;i++){
                 //console.log(i)
              
@@ -109,33 +108,39 @@ export default async function handler(req, res) {
                //console.log("true",tkuri)
                if(tkuri!==null){
                 
-               if(tkuri.substring(0,5)==="https" && tkuri.slice(-4)==="json"){
+               if(tkuri.substring(0,5)==="https" ){
                   //console.log("true",tkuri)
                   try {
-                   await axios.get(tkuri).then(resp=>{resp.data.contractaddress=contractaddress;resp.data.tokenid=tokenid; {nftsData.push(resp.data);}})
+                   await axios.get(tkuri,{timeout:4000}).then(resp=>{resp.data.contractaddress=contractaddress;resp.data.tokenid=tokenid; {nftsData.push(resp.data);}})
                   } catch(e) {
-                    console.log(e)
+                    try {
+                      await axios.get(tkuri,{timeout:4000}).then(resp=>{resp.data.contractaddress=contractaddress;resp.data.tokenid=tokenid; {nftsData.push(resp.data);}})
+                    } catch(e) {
+                      try{
+                        await axios.get(tkuri,{timeout:4000}).then(resp=>{resp.data.contractaddress=contractaddress;resp.data.tokenid=tokenid; {nftsData.push(resp.data);}})
+                      } catch(e) {
+                        const selfminted={
+                          "name":meta.name,
+                          "description":meta.description,
+                          "image":meta.image,
+                          "contractaddress":contractaddress,
+                          "tokenid":tokenid
+                         }
+                         //console.log(selfminted)
+                         nftsData.push(selfminted)
+                      }
+                    }
+                    
                   } finally {
                     console.log("go Ahead")
                   }
                                  
-               } else if (tkuri.substring(0,5)==="https" && tkuri.slice(-4)!=="json"){
-                 const selfminted={
-                  "name":meta.name,
-                  "description":meta.description,
-                  "image":meta.image,
-                  "contractaddress":contractaddress,
-                  "tokenid":tokenid
-                 }
-                 //console.log(selfminted)
-                 nftsData.push(selfminted)
-                  
                } 
               
             }
                    
           } 
-          //console.log(nftsData)
+          //console.log("ss",nftsData)
 
         }
           
