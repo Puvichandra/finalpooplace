@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from '../Nftdetails/nftdetails.module.css';
+import classes from '../nftdetails/nftdetails.module.css';
 import {AiFillCloseCircle} from 'react-icons/ai'
 import styles from '../../styles/containerstyle.module.css';
 import {BsGlobe} from 'react-icons/bs'
