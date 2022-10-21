@@ -6,12 +6,12 @@ const filterbuttons = (props) => {
   return (
     <div className={`${classes.filter} ${styles.container}`}>
 
-      <a href="#" >
-        <button onClick={()=>{props.setsortval("ltoh");}}>Price - Lowest</button>
-        </a>
       <a href="#">
-        <button  onClick={()=>{props.setsortval("htol");}}>Price - Highest</button>
+        <button  onClick={()=>{props.setsortval("htol");}}>Price - Lowest</button>
       
+        </a>
+      <a href="#" >
+        <button onClick={()=>{props.setsortval("ltoh");}}>Price - Highest</button>
         </a>
       
      
